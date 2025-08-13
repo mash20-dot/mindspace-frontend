@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindSpace - Your Safe Space for Emotional Support</title>
+    <title>MindSpace Africa - Your Safe Space for Emotional Support</title>
     <style>
         * {
             margin: 0;
@@ -13,24 +13,24 @@
         }
 
         :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary-color: #ec4899;
-            --accent-color: #10b981;
+            --primary-color: #4E67EB;
+            --primary-dark: #291D89;
+            --secondary-color: #F0F4FF;
+            --accent-color: #6366f1;
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --bg-card: #ffffff;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F0F4FF;
+            --bg-card: #FFFFFF;
             --border-color: #e5e7eb;
-            --shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow: 0 10px 25px -3px rgba(78, 103, 235, 0.1), 0 4px 6px -2px rgba(78, 103, 235, 0.05);
+            --shadow-lg: 0 25px 50px -12px rgba(78, 103, 235, 0.15);
         }
 
         [data-theme="dark"] {
-            --text-primary: #f9fafb;
+            --text-primary: #FFFFFF;
             --text-secondary: #d1d5db;
-            --bg-primary: #111827;
+            --bg-primary: #291D89;
             --bg-secondary: #1f2937;
             --bg-card: #374151;
             --border-color: #4b5563;
@@ -85,12 +85,6 @@
             text-decoration: none;
         }
 
-        .logo::before {
-            content: "🧠";
-            margin-right: 0.5rem;
-            font-size: 1.8rem;
-        }
-
         .nav-buttons {
             display: flex;
             gap: 1rem;
@@ -129,7 +123,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             box-shadow: var(--shadow);
         }
@@ -166,8 +160,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, rgba(78, 103, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(41, 29, 137, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -180,7 +174,7 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -240,6 +234,7 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            display: none;
         }
 
         .feature-card h3 {
@@ -257,7 +252,7 @@
         .cta {
             padding: 6rem 0;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
         }
 
@@ -333,12 +328,13 @@
         .user-type-btn:hover,
         .user-type-btn.active {
             border-color: var(--primary-color);
-            background: rgba(99, 102, 241, 0.1);
+            background: var(--secondary-color);
         }
 
         .user-type-btn .icon {
             font-size: 2rem;
             margin-bottom: 0.5rem;
+            display: none;
         }
 
         .user-type-btn .title {
@@ -381,7 +377,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px rgba(78, 103, 235, 0.1);
         }
 
         .auth-links {
@@ -447,7 +443,7 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <a href="#" class="logo">MindSpace</a>
+            <a href="#" class="logo">MindSpace Africa</a>
             <div class="nav-buttons">
                 <button class="theme-toggle" id="themeToggle">🌙</button>
                 <a href="#" class="btn btn-secondary" onclick="showPage('login')">Login</a>
@@ -475,7 +471,7 @@
         <!-- Features Section -->
         <section class="features">
             <div class="container">
-                <h2>Why Choose MindSpace?</h2>
+                <h2>Why Choose MindSpace Africa?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🔒</div>
@@ -533,17 +529,15 @@
         <a href="#" class="back-btn" onclick="goBack()">← Back</a>
         <div class="auth-container">
             <div class="auth-card">
-                <h2>Join MindSpace</h2>
+                <h2>Join MindSpace Africa</h2>
                 <p>Choose how you'd like to participate in our community</p>
 
                 <div class="user-type-selector">
                     <div class="user-type-btn" onclick="showPage('userSignup')">
-                        <div class="icon">👤</div>
                         <div class="title">Join as User</div>
                         <div class="desc">Seeking support and community connection</div>
                     </div>
                     <div class="user-type-btn" onclick="showPage('counselorSignup')">
-                        <div class="icon">🎓</div>
                         <div class="title">Join as Counselor</div>
                         <div class="desc">Licensed mental health professional</div>
                     </div>
@@ -710,7 +704,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 MindSpace. Creating safe spaces for emotional wellness.</p>
+            <p>&copy; 2025 MindSpace Africa. Creating safe spaces for emotional wellness.</p>
         </div>
     </footer>
 
