@@ -95,14 +95,15 @@
             background: var(--bg-card);
             border: 2px solid var(--border-color);
             border-radius: 50px;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .theme-toggle:hover {
@@ -280,8 +281,12 @@
         .auth-page {
             display: none;
             min-height: 100vh;
-            padding-top: 100px;
+            padding-top: 50px;
             background: var(--bg-secondary);
+        }
+
+        .auth-page.show {
+            display: block;
         }
 
         .auth-container {
@@ -399,7 +404,7 @@
 
         .back-btn {
             position: absolute;
-            top: 120px;
+            top: 70px;
             left: 20px;
             background: var(--bg-card);
             border: 2px solid var(--border-color);
@@ -414,6 +419,12 @@
         .back-btn:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
+        }
+
+        /* Hide header and footer for auth pages */
+        .auth-page-active header,
+        .auth-page-active footer {
+            display: none;
         }
 
         /* Responsive */
@@ -441,11 +452,11 @@
 
 <body>
     <!-- Header -->
-    <header>
+    <header id="mainHeader">
         <nav class="container">
             <a href="#" class="logo">MindSpace Africa</a>
             <div class="nav-buttons">
-                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="theme-toggle" id="themeToggle">Dark</button>
                 <a href="#" class="btn btn-secondary" onclick="showPage('login')">Login</a>
                 <a href="#" class="btn btn-primary" onclick="showPage('userType')">Join Us</a>
             </div>
@@ -474,37 +485,31 @@
                 <h2>Why Choose MindSpace Africa?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
                         <h3>Complete Anonymity</h3>
                         <p>Share your thoughts and feelings without revealing your identity. Your privacy and safety are
                             our top priorities.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">👥</div>
                         <h3>Supportive Community</h3>
                         <p>Connect with others who understand your journey. Find comfort in shared experiences and
                             mutual support.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎓</div>
                         <h3>Professional Counselors</h3>
                         <p>Access licensed mental health professionals who provide guidance, support, and therapeutic
                             resources.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🌱</div>
                         <h3>Personal Growth</h3>
                         <p>Track your emotional journey with personalized insights, mood tracking, and wellness
                             resources.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
                         <h3>Safe Environment</h3>
                         <p>Moderated spaces ensure respectful interactions. Report features and AI monitoring maintain
                             community standards.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">📱</div>
                         <h3>Always Available</h3>
                         <p>24/7 access to support when you need it most. Crisis resources and immediate help are always
                             within reach.</p>
@@ -526,7 +531,7 @@
 
     <!-- User Type Selection Page -->
     <div id="userTypePage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">← Back</a>
+        <a href="#" class="back-btn" onclick="goBack()">Back</a>
         <div class="auth-container">
             <div class="auth-card">
                 <h2>Join MindSpace Africa</h2>
@@ -552,7 +557,7 @@
 
     <!-- User Signup Page -->
     <div id="userSignupPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">← Back</a>
+        <a href="#" class="back-btn" onclick="goBack()">Back</a>
         <div class="auth-container">
             <div class="auth-card">
                 <h2>Create User Account</h2>
@@ -566,12 +571,12 @@
 
                     <div class="form-group">
                         <label>Create Password</label>
-                        <input type="password" name="password" required placeholder="••••••••">
+                        <input type="password" name="password" required placeholder="Password">
                     </div>
 
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirmPassword" required placeholder="••••••••">
+                        <input type="password" name="confirmPassword" required placeholder="Password">
                     </div>
 
                     <div class="form-group">
@@ -604,7 +609,7 @@
 
     <!-- Counselor Signup Page -->
     <div id="counselorSignupPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">← Back</a>
+        <a href="#" class="back-btn" onclick="goBack()">Back</a>
         <div class="auth-container">
             <div class="auth-card">
                 <h2>Create Counselor Account</h2>
@@ -618,12 +623,12 @@
 
                     <div class="form-group">
                         <label>Create Password</label>
-                        <input type="password" name="password" required placeholder="••••••••">
+                        <input type="password" name="password" required placeholder="Password">
                     </div>
 
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirmPassword" required placeholder="••••••••">
+                        <input type="password" name="confirmPassword" required placeholder="Password">
                     </div>
 
                     <div class="form-group">
@@ -673,7 +678,7 @@
 
     <!-- Login Page -->
     <div id="loginPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">← Back</a>
+        <a href="#" class="back-btn" onclick="goBack()">Back</a>
         <div class="auth-container">
             <div class="auth-card">
                 <h2>Welcome Back</h2>
@@ -687,7 +692,7 @@
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="password" required placeholder="••••••••">
+                        <input type="password" name="password" required placeholder="Password">
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
@@ -701,8 +706,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer (only visible on landing page) -->
+    <footer id="mainFooter">
         <div class="container">
             <p>&copy; 2025 MindSpace Africa. Creating safe spaces for emotional wellness.</p>
         </div>
@@ -712,22 +717,26 @@
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
+        const header = document.getElementById('mainHeader');
+        const footer = document.getElementById('mainFooter');
 
         // Check for saved theme preference or default to light mode
         const currentTheme = localStorage.getItem('theme') || 'light';
         if (currentTheme === 'dark') {
             body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '☀️';
+            themeToggle.textContent = 'Light';
+        } else {
+            themeToggle.textContent = 'Dark';
         }
 
         themeToggle.addEventListener('click', () => {
             if (body.getAttribute('data-theme') === 'dark') {
                 body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '🌙';
+                themeToggle.textContent = 'Dark';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
+                themeToggle.textContent = 'Light';
                 localStorage.setItem('theme', 'dark');
             }
         });
@@ -737,6 +746,8 @@
 
         function showPage(page) {
             const pages = ['landingPage', 'userTypePage', 'userSignupPage', 'counselorSignupPage', 'loginPage'];
+
+            // Hide all pages
             pages.forEach(p => {
                 document.getElementById(p).style.display = 'none';
             });
@@ -746,16 +757,27 @@
                 pageHistory.push(page);
             }
 
+            // Show/hide header and footer based on page type
             if (page === 'landing') {
                 document.getElementById('landingPage').style.display = 'block';
-            } else if (page === 'userType') {
-                document.getElementById('userTypePage').style.display = 'block';
-            } else if (page === 'userSignup') {
-                document.getElementById('userSignupPage').style.display = 'block';
-            } else if (page === 'counselorSignup') {
-                document.getElementById('counselorSignupPage').style.display = 'block';
-            } else if (page === 'login') {
-                document.getElementById('loginPage').style.display = 'block';
+                body.classList.remove('auth-page-active');
+                header.style.display = 'block';
+                footer.style.display = 'block';
+            } else {
+                // Auth pages - hide header and footer
+                body.classList.add('auth-page-active');
+                header.style.display = 'none';
+                footer.style.display = 'none';
+
+                if (page === 'userType') {
+                    document.getElementById('userTypePage').style.display = 'block';
+                } else if (page === 'userSignup') {
+                    document.getElementById('userSignupPage').style.display = 'block';
+                } else if (page === 'counselorSignup') {
+                    document.getElementById('counselorSignupPage').style.display = 'block';
+                } else if (page === 'login') {
+                    document.getElementById('loginPage').style.display = 'block';
+                }
             }
         }
 
@@ -772,16 +794,27 @@
                 document.getElementById(p).style.display = 'none';
             });
 
+            // Show/hide header and footer based on page type
             if (previousPage === 'landing') {
                 document.getElementById('landingPage').style.display = 'block';
-            } else if (previousPage === 'userType') {
-                document.getElementById('userTypePage').style.display = 'block';
-            } else if (previousPage === 'userSignup') {
-                document.getElementById('userSignupPage').style.display = 'block';
-            } else if (previousPage === 'counselorSignup') {
-                document.getElementById('counselorSignupPage').style.display = 'block';
-            } else if (previousPage === 'login') {
-                document.getElementById('loginPage').style.display = 'block';
+                body.classList.remove('auth-page-active');
+                header.style.display = 'block';
+                footer.style.display = 'block';
+            } else {
+                // Auth pages - hide header and footer
+                body.classList.add('auth-page-active');
+                header.style.display = 'none';
+                footer.style.display = 'none';
+
+                if (previousPage === 'userType') {
+                    document.getElementById('userTypePage').style.display = 'block';
+                } else if (previousPage === 'userSignup') {
+                    document.getElementById('userSignupPage').style.display = 'block';
+                } else if (previousPage === 'counselorSignup') {
+                    document.getElementById('counselorSignupPage').style.display = 'block';
+                } else if (previousPage === 'login') {
+                    document.getElementById('loginPage').style.display = 'block';
+                }
             }
         }
 
