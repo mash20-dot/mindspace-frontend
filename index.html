@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindSpace Africa - Your Safe Space for Emotional Support</title>
+    <title>MindSpace Africa - Join Our Waitlist</title>
     <style>
         * {
             margin: 0;
@@ -25,6 +25,8 @@
             --border-color: #e5e7eb;
             --shadow: 0 10px 25px -3px rgba(78, 103, 235, 0.1), 0 4px 6px -2px rgba(78, 103, 235, 0.05);
             --shadow-lg: 0 25px 50px -12px rgba(78, 103, 235, 0.15);
+            --success-color: #10b981;
+            --error-color: #ef4444;
         }
 
         [data-theme="dark"] {
@@ -44,6 +46,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             transition: all 0.3s ease;
+            min-height: 100vh;
         }
 
         .container {
@@ -85,12 +88,6 @@
             text-decoration: none;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
         .theme-toggle {
             background: var(--bg-card);
             border: 2px solid var(--border-color);
@@ -111,50 +108,18 @@
             border-color: var(--primary-color);
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
-        .hero {
+        /* Main Content */
+        .main-content {
             padding: 8rem 0 6rem;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .main-content::before {
             content: "";
             position: absolute;
             top: 0;
@@ -166,12 +131,20 @@
             pointer-events: none;
         }
 
-        .hero-content {
+        .content-wrapper {
             position: relative;
             z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero h1 {
+        .hero-section {
+            text-align: left;
+        }
+
+        .hero-section h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
@@ -181,92 +154,170 @@
             background-clip: text;
         }
 
-        .hero p {
+        .hero-section p {
             font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.7;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
         }
 
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--bg-secondary);
+        .features-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
+        /* Waitlist Form */
+        .waitlist-form {
             background: var(--bg-card);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             transition: all 0.3s ease;
+        }
+
+        .waitlist-form h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
             text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .waitlist-form .subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 103, 235, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: none;
+        .submit-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 0;
+        /* Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
+            font-weight: 500;
         }
 
-        .cta h2 {
-            font-size: 2.5rem;
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 2px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            border: 2px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stats {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stats-number {
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: block;
         }
 
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        .stats-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -277,174 +328,38 @@
             border-top: 1px solid var(--border-color);
         }
 
-        /* Auth Pages */
-        .auth-page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 50px;
-            background: var(--bg-secondary);
-        }
-
-        .auth-page.show {
-            display: block;
-        }
-
-        .auth-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .auth-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-        }
-
-        .auth-card h2 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .auth-card p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .user-type-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .user-type-btn {
-            padding: 1.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: 15px;
-            background: var(--bg-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .user-type-btn:hover,
-        .user-type-btn.active {
-            border-color: var(--primary-color);
-            background: var(--secondary-color);
-        }
-
-        .user-type-btn .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            display: none;
-        }
-
-        .user-type-btn .title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .user-type-btn .desc {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(78, 103, 235, 0.1);
-        }
-
-        .auth-links {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .auth-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .auth-links a:hover {
-            text-decoration: underline;
-        }
-
-        .back-btn {
-            position: absolute;
-            top: 70px;
-            left: 20px;
-            background: var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 50px;
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* Hide header and footer for auth pages */
-        .auth-page-active header,
-        .auth-page-active footer {
-            display: none;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .user-type-selector {
+            .content-wrapper {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
             }
 
-            .nav-buttons {
-                gap: 0.5rem;
+            .hero-section {
+                text-align: center;
             }
 
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+            .waitlist-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .main-content {
+                padding: 6rem 0 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .waitlist-form {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -452,262 +367,68 @@
 
 <body>
     <!-- Header -->
-    <header id="mainHeader">
+    <header>
         <nav class="container">
             <a href="#" class="logo">MindSpace Africa</a>
-            <div class="nav-buttons">
-                <button class="theme-toggle" id="themeToggle">Dark</button>
-                <a href="#" class="btn btn-secondary" onclick="showPage('login')">Login</a>
-                <a href="#" class="btn btn-primary" onclick="showPage('userType')">Join Us</a>
-            </div>
+            <button class="theme-toggle" id="themeToggle">Dark</button>
         </nav>
     </header>
 
-    <!-- Main Landing Page -->
-    <main id="landingPage">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Hero Section -->
+                <div class="hero-section">
                     <h1>Your Safe Space for Emotional Support</h1>
                     <p>Connect anonymously with caring communities and professional counselors. Share, heal, and grow in
                         a judgment-free environment designed for your mental wellness.</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary" onclick="showPage('userType')">Join Us</a>
+
+                    <ul class="features-list">
+                        <li>Complete anonymity and privacy protection</li>
+                        <li>Access to licensed mental health professionals</li>
+                        <li>Supportive community connections</li>
+                        <li>24/7 availability when you need it most</li>
+                        <li>Personal growth tracking and resources</li>
+                    </ul>
+                </div>
+
+                <!-- Waitlist Form -->
+                <div class="waitlist-form">
+                    <h2>Join Our Waitlist</h2>
+                    <p class="subtitle">Be the first to know when MindSpace Africa launches. We'll notify you as soon as
+                        we're ready!</p>
+
+                    <div id="messageContainer"></div>
+
+                    <form id="waitlistForm">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" required
+                                placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span id="buttonText">Join Waitlist</span>
+                        </button>
+                    </form>
+
+                    <div class="stats">
+                        <span class="stats-number" id="waitlistCount">500+</span>
+                        <span class="stats-label">People already on the waitlist</span>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <h2>Why Choose MindSpace Africa?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Complete Anonymity</h3>
-                        <p>Share your thoughts and feelings without revealing your identity. Your privacy and safety are
-                            our top priorities.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Supportive Community</h3>
-                        <p>Connect with others who understand your journey. Find comfort in shared experiences and
-                            mutual support.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Professional Counselors</h3>
-                        <p>Access licensed mental health professionals who provide guidance, support, and therapeutic
-                            resources.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Personal Growth</h3>
-                        <p>Track your emotional journey with personalized insights, mood tracking, and wellness
-                            resources.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Safe Environment</h3>
-                        <p>Moderated spaces ensure respectful interactions. Report features and AI monitoring maintain
-                            community standards.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Always Available</h3>
-                        <p>24/7 access to support when you need it most. Crisis resources and immediate help are always
-                            within reach.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Start Your Journey?</h2>
-                <p>Join thousands of users who've found support, healing, and growth in our community</p>
-                <a href="#" class="btn btn-secondary" style="background: white; color: var(--primary-color);"
-                    onclick="showPage('userType')">Create Your Account</a>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- User Type Selection Page -->
-    <div id="userTypePage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">Back</a>
-        <div class="auth-container">
-            <div class="auth-card">
-                <h2>Join MindSpace Africa</h2>
-                <p>Choose how you'd like to participate in our community</p>
-
-                <div class="user-type-selector">
-                    <div class="user-type-btn" onclick="showPage('userSignup')">
-                        <div class="title">Join as User</div>
-                        <div class="desc">Seeking support and community connection</div>
-                    </div>
-                    <div class="user-type-btn" onclick="showPage('counselorSignup')">
-                        <div class="title">Join as Counselor</div>
-                        <div class="desc">Licensed mental health professional</div>
-                    </div>
-                </div>
-
-                <div class="auth-links" style="justify-content: center;">
-                    <a href="#" onclick="showPage('login')">Already have an account? Sign in</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- User Signup Page -->
-    <div id="userSignupPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">Back</a>
-        <div class="auth-container">
-            <div class="auth-card">
-                <h2>Create User Account</h2>
-                <p>Join our supportive community anonymously</p>
-
-                <form id="userSignupForm">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" required placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Create Password</label>
-                        <input type="password" name="password" required placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" name="confirmPassword" required placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Anonymous Display Name</label>
-                        <input type="text" name="displayName" required placeholder="e.g., HopefulSoul, QuietListener">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Age Range (Optional)</label>
-                        <select name="ageRange">
-                            <option value="">Prefer not to say</option>
-                            <option value="18-24">18-24</option>
-                            <option value="25-34">25-34</option>
-                            <option value="35-44">35-44</option>
-                            <option value="45-54">45-54</option>
-                            <option value="55+">55+</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create User Account</button>
-                </form>
-
-                <div class="auth-links">
-                    <a href="#" onclick="showPage('login')">Already have an account?</a>
-                    <a href="#" onclick="showPage('counselorSignup')">Join as Counselor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Counselor Signup Page -->
-    <div id="counselorSignupPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">Back</a>
-        <div class="auth-container">
-            <div class="auth-card">
-                <h2>Create Counselor Account</h2>
-                <p>Join as a licensed mental health professional</p>
-
-                <form id="counselorSignupForm">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" required placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Create Password</label>
-                        <input type="password" name="password" required placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" name="confirmPassword" required placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="fullName" required placeholder="Dr. Jane Smith">
-                    </div>
-
-                    <div class="form-group">
-                        <label>License Number</label>
-                        <input type="text" name="licenseNumber" required placeholder="License verification required">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Specialization</label>
-                        <select name="specialization" required>
-                            <option value="">Select specialization</option>
-                            <option value="anxiety">Anxiety & Depression</option>
-                            <option value="trauma">Trauma & PTSD</option>
-                            <option value="relationship">Relationship Counseling</option>
-                            <option value="addiction">Addiction Recovery</option>
-                            <option value="family">Family Therapy</option>
-                            <option value="grief">Grief Counseling</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Years of Experience</label>
-                        <select name="experience" required>
-                            <option value="">Select experience</option>
-                            <option value="1-3">1-3 years</option>
-                            <option value="3-5">3-5 years</option>
-                            <option value="5-10">5-10 years</option>
-                            <option value="10+">10+ years</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Counselor Account</button>
-                </form>
-
-                <div class="auth-links">
-                    <a href="#" onclick="showPage('login')">Already have an account?</a>
-                    <a href="#" onclick="showPage('userSignup')">Join as User</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Page -->
-    <div id="loginPage" class="auth-page">
-        <a href="#" class="back-btn" onclick="goBack()">Back</a>
-        <div class="auth-container">
-            <div class="auth-card">
-                <h2>Welcome Back</h2>
-                <p>Sign in to continue your journey</p>
-
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" required placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" required placeholder="Password">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
-                </form>
-
-                <div class="auth-links">
-                    <a href="#">Forgot Password?</a>
-                    <a href="#" onclick="showPage('userType')">Create Account</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer (only visible on landing page) -->
-    <footer id="mainFooter">
+    <!-- Footer -->
+    <footer>
         <div class="container">
             <p>&copy; 2025 MindSpace Africa. Creating safe spaces for emotional wellness.</p>
         </div>
@@ -717,8 +438,6 @@
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
-        const header = document.getElementById('mainHeader');
-        const footer = document.getElementById('mainFooter');
 
         // Check for saved theme preference or default to light mode
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -741,111 +460,99 @@
             }
         });
 
-        // Page navigation with history tracking
-        let pageHistory = ['landing'];
+        // Waitlist form functionality
+        const waitlistForm = document.getElementById('waitlistForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const buttonText = document.getElementById('buttonText');
+        const messageContainer = document.getElementById('messageContainer');
 
-        function showPage(page) {
-            const pages = ['landingPage', 'userTypePage', 'userSignupPage', 'counselorSignupPage', 'loginPage'];
+        function showMessage(message, type) {
+            messageContainer.innerHTML = `<div class="message ${type}">${message}</div>`;
 
-            // Hide all pages
-            pages.forEach(p => {
-                document.getElementById(p).style.display = 'none';
-            });
-
-            // Add current page to history (avoid duplicates)
-            if (pageHistory[pageHistory.length - 1] !== page) {
-                pageHistory.push(page);
-            }
-
-            // Show/hide header and footer based on page type
-            if (page === 'landing') {
-                document.getElementById('landingPage').style.display = 'block';
-                body.classList.remove('auth-page-active');
-                header.style.display = 'block';
-                footer.style.display = 'block';
-            } else {
-                // Auth pages - hide header and footer
-                body.classList.add('auth-page-active');
-                header.style.display = 'none';
-                footer.style.display = 'none';
-
-                if (page === 'userType') {
-                    document.getElementById('userTypePage').style.display = 'block';
-                } else if (page === 'userSignup') {
-                    document.getElementById('userSignupPage').style.display = 'block';
-                } else if (page === 'counselorSignup') {
-                    document.getElementById('counselorSignupPage').style.display = 'block';
-                } else if (page === 'login') {
-                    document.getElementById('loginPage').style.display = 'block';
-                }
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageContainer.innerHTML = '';
+                }, 5000);
             }
         }
 
-        function goBack() {
-            // Remove current page from history
-            pageHistory.pop();
-
-            // Get previous page, default to landing if history is empty
-            const previousPage = pageHistory.length > 0 ? pageHistory[pageHistory.length - 1] : 'landing';
-
-            // Show previous page without adding to history
-            const pages = ['landingPage', 'userTypePage', 'userSignupPage', 'counselorSignupPage', 'loginPage'];
-            pages.forEach(p => {
-                document.getElementById(p).style.display = 'none';
-            });
-
-            // Show/hide header and footer based on page type
-            if (previousPage === 'landing') {
-                document.getElementById('landingPage').style.display = 'block';
-                body.classList.remove('auth-page-active');
-                header.style.display = 'block';
-                footer.style.display = 'block';
+        function setLoading(loading) {
+            submitBtn.disabled = loading;
+            if (loading) {
+                buttonText.innerHTML = '<span class="loading"></span>Joining...';
             } else {
-                // Auth pages - hide header and footer
-                body.classList.add('auth-page-active');
-                header.style.display = 'none';
-                footer.style.display = 'none';
-
-                if (previousPage === 'userType') {
-                    document.getElementById('userTypePage').style.display = 'block';
-                } else if (previousPage === 'userSignup') {
-                    document.getElementById('userSignupPage').style.display = 'block';
-                } else if (previousPage === 'counselorSignup') {
-                    document.getElementById('counselorSignupPage').style.display = 'block';
-                } else if (previousPage === 'login') {
-                    document.getElementById('loginPage').style.display = 'block';
-                }
+                buttonText.innerHTML = 'Join Waitlist';
             }
         }
 
-        // Form submissions (placeholder functionality)
-        document.getElementById('userSignupForm').addEventListener('submit', (e) => {
+        waitlistForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('User signup form submitted! This would normally process the user registration.');
-        });
 
-        document.getElementById('counselorSignupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Counselor signup form submitted! Mindspace Africa will be at your door step soon, stay tuned.');
-        });
+            const formData = new FormData(waitlistForm);
+            const fullname = formData.get('fullname').trim();
+            const email = formData.get('email').trim();
 
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Login form submitted! Mindspace will be on at your door step soon, stay tuned.');
-        });
+            // Basic validation
+            if (!fullname || !email) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+            if (!isValidEmail(email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Clear any existing messages
+            messageContainer.innerHTML = '';
+            setLoading(true);
+
+            try {
+                const url = 'https://mindspace-backend-1.onrender.com/wait/register';
+
+                console.log('Making POST request to:', url); // Debug log
+                console.log('Sending data:', { fullname, email }); // Debug log
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullname: fullname,
+                        email: email
+                    })
+                });
+
+                console.log('Response status:', response.status); // Debug log
+
+                const data = await response.json();
+                console.log('Response data:', data); // Debug log
+
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    waitlistForm.reset(); // Clear the form
+
+                    // Update waitlist counter (simulate increment)
+                    const currentCount = document.getElementById('waitlistCount');
+                    const count = parseInt(currentCount.textContent.replace('+', '')) + 1;
+                    currentCount.textContent = count + '+';
+                } else {
+                    showMessage(data.message || 'Something went wrong. Please try again.', 'error');
                 }
-            });
+            } catch (error) {
+                console.error('Fetch error:', error);
+                showMessage('Network error. Please check your connection and try again.', 'error');
+            } finally {
+                setLoading(false);
+            }
         });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 
         // Header scroll effect
         window.addEventListener('scroll', () => {
@@ -859,6 +566,29 @@
                     ? 'rgba(17, 24, 39, 0.95)'
                     : 'rgba(255, 255, 255, 0.95)';
             }
+        });
+
+        // Add some entrance animations
+        window.addEventListener('load', () => {
+            const heroSection = document.querySelector('.hero-section');
+            const waitlistForm = document.querySelector('.waitlist-form');
+
+            heroSection.style.opacity = '0';
+            heroSection.style.transform = 'translateY(30px)';
+            waitlistForm.style.opacity = '0';
+            waitlistForm.style.transform = 'translateY(30px)';
+
+            setTimeout(() => {
+                heroSection.style.transition = 'all 0.6s ease';
+                heroSection.style.opacity = '1';
+                heroSection.style.transform = 'translateY(0)';
+            }, 100);
+
+            setTimeout(() => {
+                waitlistForm.style.transition = 'all 0.6s ease';
+                waitlistForm.style.opacity = '1';
+                waitlistForm.style.transform = 'translateY(0)';
+            }, 300);
         });
     </script>
 </body>
